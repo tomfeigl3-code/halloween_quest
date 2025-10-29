@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halloween Quest - Úroveň 2</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a0a2e 0%, #3d1a5f 50%, #5c2e7e 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 0 50px rgba(255, 107, 26, 0.3);
+            border: 2px solid #ff6b1a;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: glow 2s ease-in-out infinite;
+        }
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px #ff6b1a, 0 0 30px #ff6b1a; }
+            50% { text-shadow: 0 0 30px #ff6b1a, 0 0 40px #ff6b1a; }
+        }
+        h1 { font-size: 2.5em; color: #ff6b1a; margin-bottom: 10px; }
+        .level-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 2px solid rgba(255, 107, 26, 0.3);
+        }
+        .level-title {
+            font-size: 1.8em;
+            color: #ffa500;
+            margin-bottom: 20px;
+        }
+        .story-text {
+            line-height: 1.8;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-left: 4px solid #ff6b1a;
+            border-radius: 5px;
+        }
+        .puzzle-box {
+            background: rgba(255, 107, 26, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px dashed #ff6b1a;
+        }
+        .input-group { margin: 20px 0; }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #ffa500;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1em;
+            border: 2px solid #ff6b1a;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+        }
+        input:focus {
+            outline: none;
+            border-color: #ffa500;
+            box-shadow: 0 0 20px rgba(255, 107, 26, 0.5);
+        }
+        .btn {
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ff6b1a, #ffa500);
+            color: #fff;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 107, 26, 0.5);
+        }
+        .message {
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-weight: bold;
+            display: none;
+        }
+        .success {
+            background: rgba(0, 255, 0, 0.2);
+            border: 2px solid #00ff00;
+            color: #00ff00;
+            display: block;
+        }
+        .error {
+            background: rgba(255, 0, 0, 0.2);
+            border: 2px solid #ff0000;
+            color: #ff6666;
+            display: block;
+        }
+        .hint {
+            background: rgba(255, 165, 0, 0.2);
+            border: 2px solid #ffa500;
+            color: #ffa500;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        ul { list-style: none; padding: 20px; }
+        ul li { margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎃 Halloween Quest 🎃</h1>
+            <p>Úroveň 2 z 8</p>
+        </div>
+
+        <div class="level-card">
+            <h2 class="level-title">⚰️ Hrobka sportovních duchů</h2>
+            <div class="story-text">
+                Vstoupili jste do hrobky, kde odpočívají duchové starých atletů.
+                Na zdi visí tabulka s jejich rekordy...
+            </div>
+            <div class="puzzle-box">
+                <h3>🏃 ATLETICKÉ REKORDY:</h3>
+                <ul>
+                    <li>👻 Duch rychlosti: 100m za <strong>12</strong> sekund</li>
+                    <li>👻 Duch výšky: skok <strong>180</strong> cm</li>
+                    <li>👻 Duch síly: <strong>45</strong> kliků</li>
+                    <li>👻 Duch vytrvalosti: <strong>15</strong> okruhů</li>
+                </ul>
+                <p style="margin-top: 20px;">
+                    <strong>HÁDANKA:</strong> Sečtěte všechna čísla z rekordů a přičtěte počet duchů. 
+                    Jaké číslo dostanete?
+                </p>
+            </div>
+            <div class="hint">
+                💡 Tip: 12 + 180 + 45 + 15 + počet duchů (4) = ?
+            </div>
+            <div class="input-group">
+                <label>🔢 Výsledek:</label>
+                <input type="number" id="answer" placeholder="Napište číslo...">
+            </div>
+            <div id="message" class="message"></div>
+            <button class="btn" onclick="checkAnswer()">Zkontrolovat odpověď</button>
+        </div>
+    </div>
+
+    <script>
+        function checkAnswer() {
+            const input = document.getElementById('answer');
+            const message = document.getElementById('message');
+            const userAnswer = parseInt(input.value);
+            
+            if (userAnswer === 256) {
+                message.innerHTML = `
+                    ✅ Výborně! Duchové vás propouští dál!<br><br>
+                    🔍 DALŠÍ QR KÓD NAJDETE:<br>
+                    V jídelně u výdejního okénka<br><br>
+                    📍 Kód lokace: KOTVA-03
+                `;
+                message.className = 'message success';
+            } else {
+                message.textContent = '❌ Zkuste to znovu! Nezapomeňte přičíst i počet duchů (4)!';
+                message.className = 'message error';
+            }
+        }
+    </script>
+</body>
+</html>

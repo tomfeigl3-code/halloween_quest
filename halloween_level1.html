@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halloween Quest - Úroveň 1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a0a2e 0%, #3d1a5f 50%, #5c2e7e 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 0 50px rgba(255, 107, 26, 0.3);
+            border: 2px solid #ff6b1a;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px #ff6b1a, 0 0 30px #ff6b1a; }
+            50% { text-shadow: 0 0 30px #ff6b1a, 0 0 40px #ff6b1a; }
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #ff6b1a;
+            margin-bottom: 10px;
+        }
+
+        .level-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 2px solid rgba(255, 107, 26, 0.3);
+        }
+
+        .level-title {
+            font-size: 1.8em;
+            color: #ffa500;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .story-text {
+            line-height: 1.8;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-left: 4px solid #ff6b1a;
+            border-radius: 5px;
+        }
+
+        .puzzle-box {
+            background: rgba(255, 107, 26, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px dashed #ff6b1a;
+        }
+
+        .input-group {
+            margin: 20px 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #ffa500;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1em;
+            border: 2px solid #ff6b1a;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            transition: all 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #ffa500;
+            box-shadow: 0 0 20px rgba(255, 107, 26, 0.5);
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            margin: 10px;
+            background: linear-gradient(135deg, #ff6b1a, #ffa500);
+            color: #fff;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 107, 26, 0.5);
+        }
+
+        .message {
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-weight: bold;
+            animation: slideIn 0.5s;
+            display: none;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .success {
+            background: rgba(0, 255, 0, 0.2);
+            border: 2px solid #00ff00;
+            color: #00ff00;
+            display: block;
+        }
+
+        .error {
+            background: rgba(255, 0, 0, 0.2);
+            border: 2px solid #ff0000;
+            color: #ff6666;
+            display: block;
+        }
+
+        .hint {
+            background: rgba(255, 165, 0, 0.2);
+            border: 2px solid #ffa500;
+            color: #ffa500;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎃 Halloween Quest 🎃</h1>
+            <p>Úroveň 1 z 8</p>
+        </div>
+
+        <div class="level-card">
+            <h2 class="level-title">🏛️ Vstupní hala</h2>
+            <div class="story-text">
+                Vítejte v prokletém hradu čarodějnice Morgany!<br><br>
+                Před 100 lety zde ukryla magický amulet, který drží duchy uvězněné. 
+                O půlnoci se Morgana probudí a navždy vás uvězní!<br><br>
+                Máte 30 minut na osvobození duchů!<br><br>
+                Morgana zanechala zprávu v zrcadlovém písmu. Dokážete ji přečíst?
+            </div>
+            <div class="puzzle-box">
+                <p style="font-size: 1.5em; text-align: center; letter-spacing: 2px;">
+                    UKBORH ZRKS EDEV ATSEC
+                </p>
+            </div>
+            <div class="hint">
+                💡 Tip: Zkuste text přečíst pozpátku!
+            </div>
+            <div class="input-group">
+                <label>✍️ Vaše odpověď:</label>
+                <input type="text" id="answer" placeholder="Napište odpověď...">
+            </div>
+            <div id="message" class="message"></div>
+            <button class="btn" onclick="checkAnswer()">Zkontrolovat odpověď</button>
+        </div>
+    </div>
+
+    <script>
+        function checkAnswer() {
+            const input = document.getElementById('answer');
+            const message = document.getElementById('message');
+            const userAnswer = input.value.trim().toLowerCase();
+            const correctAnswer = 'cesta vede skrz hrobku';
+            
+            if (userAnswer === correctAnswer) {
+                message.innerHTML = `
+                    ✅ Správně! Cesta vede skrz hrobku!<br><br>
+                    🔍 DALŠÍ QR KÓD NAJDETE:<br>
+                    Pod schody, kde jsou pomůcky na tělocvik<br><br>
+                    📍 Kód lokace: TELO-02
+                `;
+                message.className = 'message success';
+            } else {
+                message.textContent = '❌ Zkuste to znovu! Tato odpověď není správná.';
+                message.className = 'message error';
+            }
+        }
+    </script>
+</body>
+</html>

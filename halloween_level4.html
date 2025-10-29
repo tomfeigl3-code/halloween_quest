@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halloween Quest - Úroveň 4</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a0a2e 0%, #3d1a5f 50%, #5c2e7e 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 0 50px rgba(255, 107, 26, 0.3);
+            border: 2px solid #ff6b1a;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: glow 2s ease-in-out infinite;
+        }
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px #ff6b1a, 0 0 30px #ff6b1a; }
+            50% { text-shadow: 0 0 30px #ff6b1a, 0 0 40px #ff6b1a; }
+        }
+        h1 { font-size: 2.5em; color: #ff6b1a; margin-bottom: 10px; }
+        .level-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 2px solid rgba(255, 107, 26, 0.3);
+        }
+        .level-title { font-size: 1.8em; color: #ffa500; margin-bottom: 20px; }
+        .story-text {
+            line-height: 1.8;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-left: 4px solid #ff6b1a;
+            border-radius: 5px;
+        }
+        .puzzle-box {
+            background: rgba(255, 107, 26, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px dashed #ff6b1a;
+        }
+        .input-group { margin: 20px 0; }
+        label { display: block; margin-bottom: 10px; font-weight: bold; color: #ffa500; }
+        input[type="number"] {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1em;
+            border: 2px solid #ff6b1a;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+        }
+        input:focus { outline: none; border-color: #ffa500; box-shadow: 0 0 20px rgba(255, 107, 26, 0.5); }
+        .btn {
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ff6b1a, #ffa500);
+            color: #fff;
+        }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(255, 107, 26, 0.5); }
+        .message { padding: 15px; border-radius: 10px; margin: 20px 0; font-weight: bold; display: none; }
+        .success { background: rgba(0, 255, 0, 0.2); border: 2px solid #00ff00; color: #00ff00; display: block; }
+        .error { background: rgba(255, 0, 0, 0.2); border: 2px solid #ff0000; color: #ff6666; display: block; }
+        .hint { background: rgba(255, 165, 0, 0.2); border: 2px solid #ffa500; color: #ffa500; padding: 15px; border-radius: 10px; margin: 15px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎃 Halloween Quest 🎃</h1>
+            <p>Úroveň 4 z 8</p>
+        </div>
+
+        <div class="level-card">
+            <h2 class="level-title">📚 Knihovna zaklínadel</h2>
+            <div class="story-text">
+                Vstoupili jste do starobylé knihovny. 
+                Na stole leží otevřená kniha s hádankou...
+            </div>
+            <div class="puzzle-box">
+                <p><strong>🔮 SLOVNÍ PUZZLE:</strong></p>
+                <p style="margin: 20px 0;">Najděte 5 Halloween slov v této mřížce:</p>
+                <div style="background: rgba(0,0,0,0.5); padding: 20px; border-radius: 10px; font-family: monospace; font-size: 1.2em; line-height: 1.8;">
+                    D Ý N Ě X Z<br>
+                    K O Š T Ě W<br>
+                    K O Č K A Y<br>
+                    D U C H M P<br>
+                    K R E V Q T
+                </div>
+                <p style="margin-top: 20px;">
+                    Kolikrát se v této mřížce objevuje písmeno <strong>K</strong>?
+                </p>
+            </div>
+            <div class="hint">
+                💡 Tip: Spočítejte všechna K v celé mřížce!
+            </div>
+            <div class="input-group">
+                <label>🔢 Počet písmen K:</label>
+                <input type="number" id="answer" placeholder="Napište číslo...">
+            </div>
+            <div id="message" class="message"></div>
+            <button class="btn" onclick="checkAnswer()">Zkontrolovat odpověď</button>
+        </div>
+    </div>
+
+    <script>
+        function checkAnswer() {
+            const input = document.getElementById('answer');
+            const message = document.getElementById('message');
+            const userAnswer = parseInt(input.value);
+            
+            if (userAnswer === 4) {
+                message.innerHTML = `
+                    ✅ Knihovna vám prozradila tajemství!<br><br>
+                    🔍 DALŠÍ QR KÓD NAJDETE:<br>
+                    Na chodbě 2. patro u okna<br><br>
+                    📍 Kód lokace: LEKTVAR-05
+                `;
+                message.className = 'message success';
+            } else {
+                message.textContent = '❌ Zkuste to znovu! Projděte si mřížku pečlivě řádek po řádku.';
+                message.className = 'message error';
+            }
+        }
+    </script>
+</body>
+</html>
